@@ -9,10 +9,18 @@
     opacity: 0;
     visibility: hidden;
     transition: all .3s;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba($color-black, .3);
+    @supports(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)){
 
+    }
 
     &__content {
-        @include center-horizontal-vertical;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         width: 75%;
         background-color: $color-white;
         box-shadow: 0 2rem 4rem rgba($color-black, .2);
@@ -21,11 +29,25 @@
         overflow: hidden; 
         transform: translate(-50%, -50%) scale(.25);  
         transition: all .5s .2s;
+
+        @include respond(tab-port){
+            width: 75%;
+        }
+
+        @include respond(phone){
+            width: 90%;
+        }
+       
     }
 
     &__left {
         width: 33.3333%;
         display: table-cell;
+
+        @include respond(tab-port){
+            width: 100%;
+            display: table;  
+        }
     }
 
     &__right {
@@ -33,11 +55,25 @@
         display: table-cell;
         vertical-align: middle;
         padding: 3rem 5rem;
+
+        @include respond(tab-port){
+            width: 100%;
+            display: block;   
+         }
+
+         @include respond(tab-port){
+            width: 100%;  
+         }
     }
 
     &__img {
         display: block;
         width: 100%;
+
+        @include respond(tab-port) {
+            width: 50%;
+            display: inline-block;
+        }
     }
 
     &__text {
@@ -52,7 +88,7 @@
         -moz-hyphens: auto;
         -ms-hyphens: auto;
         -webkit-hyphens: auto;
-        hyphens: auto;
+         hyphens: auto;
     }
 
     
@@ -66,6 +102,7 @@
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
     }
+    
     &__close {
         &:link,
         &:visited {
